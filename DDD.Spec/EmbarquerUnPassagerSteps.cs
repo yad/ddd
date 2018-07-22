@@ -49,19 +49,22 @@ namespace DDD.Spec
         [Then(@"Le nombre de passager est de (.*)")]
         public void ThenLeNombreDePassagerEstDe(int expectedPassengerNumber)
         {
-            Assert.AreEqual(expectedPassengerNumber, _context.TrainResult.Value.Passengers.Count);
+            Assert.AreEqual(expectedPassengerNumber, _context.Train.Passengers.Count);
         }
         
         [Then(@"Le passager est dans le train")]
         public void ThenLePassagerEstDansLeTrain()
         {
-            Assert.IsTrue(_context.TrainResult.Value.Passengers.Any(p => p.Id == _context.Passenger.Id));
+            Assert.IsTrue(_context.TrainResult.IsSuccess);
+            Assert.IsTrue(_context.Train.Passengers.Any(p => p.Id == _context.Passenger.Id));
         }
         
         [Then(@"Le passager ne peut pas monter")]
         public void ThenLePassagerNePeutPasMonter()
         {
-            Assert.IsFalse(_context.TrainResult.Value.Passengers.Any(p => p.Id == _context.Passenger.Id));
+            Assert.IsTrue(_context.TrainResult.IsFailure);
+            Assert.AreEqual("La limite d'embarquement est atteinte", _context.TrainResult.Error);
+            Assert.IsFalse(_context.Train.Passengers.Any(p => p.Id == _context.Passenger.Id));
         }
     }
 
