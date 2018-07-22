@@ -16,10 +16,6 @@ namespace DDD.Domain
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=FXCLEMARRAS\\SQLEXPRESS;Database=StationContent;Trusted_Connection=True;");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

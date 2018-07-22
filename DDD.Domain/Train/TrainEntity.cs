@@ -1,14 +1,16 @@
-﻿using DDD.Domain.Passenger;
+﻿using CSharpFunctionalExtensions;
+using DDD.Domain.Passenger;
 using System.Collections.Generic;
 
 namespace DDD.Domain.Train
 {
     public partial class TrainEntity
     {
-        public TrainEntity(int trainId)
+        public TrainEntity(int trainId, int limit)
             : this()
         {
             _Id = trainId;
+            _Limit = limit;
         }
 
         public TrainEntity()
@@ -23,13 +25,17 @@ namespace DDD.Domain.Train
         private string _Name;
         public string Name => _Name;
 
+        private int _Limit;
+        public int Limit => _Limit;
 
         private readonly List<PassengerEntity> _Passengers;
         public IReadOnlyList<PassengerEntity> Passengers => _Passengers;
-
-        internal void EmbarquerPassager(PassengerEntity passenger)
+        
+        public Result<TrainEntity> EmbarquerPassager(PassengerEntity passenger)
         {
-            _Passengers.Add(passenger);
+            return Result.Ok(this)
+                .Ensure(train => TrainEmbarquementSpecification.IsSatisfiedBy(train, passenger), "La limite d'embarquement est atteinte")
+                .OnSuccess(train => train._Passengers.Add(passenger));
         }
     }
 }

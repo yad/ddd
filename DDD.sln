@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Api", "DDD.Api\DDD.Api.csproj", "{861E8080-0823-455A-A54C-B8A8BAAEED39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Api", "DDD.Api\DDD.Api.csproj", "{861E8080-0823-455A-A54C-B8A8BAAEED39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Domain", "DDD.Domain\DDD.Domain.csproj", "{BF7745AE-4C13-4263-92EE-D4942E123D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain", "DDD.Domain\DDD.Domain.csproj", "{BF7745AE-4C13-4263-92EE-D4942E123D57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Spec", "DDD.Spec\DDD.Spec.csproj", "{951DFFD7-F98A-4ECA-8463-CB2CFAA569BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BF7745AE-4C13-4263-92EE-D4942E123D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF7745AE-4C13-4263-92EE-D4942E123D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF7745AE-4C13-4263-92EE-D4942E123D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951DFFD7-F98A-4ECA-8463-CB2CFAA569BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951DFFD7-F98A-4ECA-8463-CB2CFAA569BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951DFFD7-F98A-4ECA-8463-CB2CFAA569BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951DFFD7-F98A-4ECA-8463-CB2CFAA569BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
