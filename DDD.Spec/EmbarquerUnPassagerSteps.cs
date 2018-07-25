@@ -22,7 +22,7 @@ namespace DDD.Spec
         [Given(@"Le train (.*) est en gare")]
         public void GivenLeTrainEstEnGare(int trainId)
         {
-            _context.Train = new TrainEntity(trainId, _context.MaxPlaces);
+            _context.Train = TrainEntity.Affreter(trainId, _context.MaxPlaces);
         }
 
         [Given(@"Le train contient (.*) passagers")]

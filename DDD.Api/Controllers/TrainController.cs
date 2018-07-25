@@ -7,23 +7,23 @@ namespace DDD.Api.Controllers
     [Route("api/[controller]")]
     public class TrainController : Controller
     {
-        private readonly TrainService trainService;
+        private readonly TrainService _trainService;
 
         public TrainController(TrainService trainService)
         {
-            this.trainService = trainService;
+            _trainService = trainService;
         }
 
         [HttpGet("{trainId}/passenger/{passengerId}")]
         public async Task<IActionResult> Get(int trainId, int passengerId)
         {
-            return Ok(await trainService.EmbarquerDansLeTrain(trainId, passengerId));
+            return Ok(await _trainService.EmbarquerDansLeTrain(trainId, passengerId));
         }
 
         [HttpGet("")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await trainService.ListerLesTrains());
+            return Ok(await _trainService.ListerLesTrains());
         }
     }
 }

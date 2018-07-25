@@ -6,21 +6,22 @@ namespace DDD.Domain.Train
 {
     public partial class TrainEntity
     {
-        public TrainEntity(int trainId, int limit)
-            : this()
+        public static TrainEntity Affreter(int trainId, int limit)
         {
-            _Id = trainId;
-            _Limit = limit;
+            return new TrainEntity()
+            {
+                _Id = trainId,
+                _Limit = limit
+            };
         }
 
-        public TrainEntity()
+        private TrainEntity()
         {
             _Passengers = new List<PassengerEntity>();
         }
 
         private int _Id;
         public int Id => _Id;
-
 
         private string _Name;
         public string Name => _Name;

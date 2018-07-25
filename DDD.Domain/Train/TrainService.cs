@@ -1,5 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-using DDD.Domain.Passenger;
+﻿using DDD.Domain.Passenger;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,11 +18,7 @@ namespace DDD.Domain.Train
         public async Task<TrainEntity> EmbarquerDansLeTrain(int trainId, int passengerId)
         {
             var train = await trainRepository.GetById(trainId);
-            if (train == null)
-            {
-                train = await AffreterUnTrain(trainId);
-            }
-            var passenger = await passengerRepository.GetById(passengerId) ?? new PassengerEntity(passengerId);
+            var passenger = await passengerRepository.GetById(passengerId);
             train.EmbarquerPassager(passenger);
             return train;
         }
@@ -35,7 +30,7 @@ namespace DDD.Domain.Train
 
         public async Task<TrainEntity> AffreterUnTrain(int trainId)
         {
-            TrainEntity train = new TrainEntity(trainId, 50);
+            TrainEntity train = TrainEntity.Affreter(trainId, 50);
             await trainRepository.Add(train);
             return train;
         }
