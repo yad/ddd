@@ -6,12 +6,14 @@ namespace DDD.Domain.Train
 {
     public partial class TrainEntity
     {
-        public static TrainEntity Affreter(int trainId, int limit)
+        private const int TrainLimit = 50;
+
+        public static TrainEntity Affreter(string numero)
         {
             return new TrainEntity()
             {
-                _Id = trainId,
-                _Limit = limit
+                _Number = numero,
+                _Limit = TrainLimit
             };
         }
 
@@ -23,8 +25,8 @@ namespace DDD.Domain.Train
         private int _Id;
         public int Id => _Id;
 
-        private string _Name;
-        public string Name => _Name;
+        private string _Number;
+        public string Number => _Number;
 
         private int _Limit;
         public int Limit => _Limit;

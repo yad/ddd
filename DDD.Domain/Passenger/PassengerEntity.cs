@@ -4,12 +4,15 @@ namespace DDD.Domain.Passenger
 {
     public partial class PassengerEntity
     {
-        public PassengerEntity(int passengerId)
-            : this()
+        public static PassengerEntity NouveauClient(string nom, string prenom)
         {
-            _Id = passengerId;
+            return new PassengerEntity()
+            {
+                _Name = nom
+            };
         }
-        public PassengerEntity()
+
+        private PassengerEntity()
         {
         }
 

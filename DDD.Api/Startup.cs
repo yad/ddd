@@ -1,5 +1,6 @@
 ﻿using DDD.Domain;
 using DDD.Domain.Passenger;
+using DDD.Domain.TicketOffice;
 using DDD.Domain.Train;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace DDD.Api
             services.AddTransient<PassengerRepository>();
             services.AddTransient<TrainRepository>();
             services.AddTransient<TrainService>();
+            services.AddTransient<TicketOfficeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

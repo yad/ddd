@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace DDD.Domain.Train
 {
@@ -25,9 +26,18 @@ namespace DDD.Domain.Train
             await context.SaveChangesAsync();
         }
 
-        internal async Task<IReadOnlyList<TrainIdentifier>> GetAll()
+        internal async Task<IReadOnlyList<TrainWithPassengers>> GetAll()
         {
-            return await (from entity in context.Set<TrainEntity>() select TrainMapper.ToTrainIdentifier(entity)).ToArrayAsync();
+            return await (
+                from entity in context.Set<TrainEntity>()
+                select TrainWithPassengers.Lister(entity.Number, entity.Passengers.Select(p => p.Name))
+           ).ToArrayAsync();
+        }
+
+        internal async Task Update(TrainEntity train)
+        {
+            context.Set<TrainEntity>().Update(train);
+            await context.SaveChangesAsync();
         }
     }
 }

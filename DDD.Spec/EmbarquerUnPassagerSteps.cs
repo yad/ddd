@@ -2,7 +2,6 @@
 using DDD.Domain.Passenger;
 using DDD.Domain.Train;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -20,9 +19,9 @@ namespace DDD.Spec
         }
 
         [Given(@"Le train (.*) est en gare")]
-        public void GivenLeTrainEstEnGare(int trainId)
+        public void GivenLeTrainEstEnGare(string numeroTrain)
         {
-            _context.Train = TrainEntity.Affreter(trainId, _context.MaxPlaces);
+            _context.Train = TrainEntity.Affreter(numeroTrain);
         }
 
         [Given(@"Le train contient (.*) passagers")]
@@ -30,14 +29,14 @@ namespace DDD.Spec
         {
             for (int i = 0; i < currentPassengerNumber; i++)
             {
-                _context.Train.EmbarquerPassager(new PassengerEntity());
+                _context.Train.EmbarquerPassager(PassengerEntity.NouveauClient("Nom#" + i, "Prénom#" + i));
             }
         }
 
         [Given(@"Le passager (.*) est a quai")]
         public void GivenLePassagerEstAQuai(int idPassenger)
         {
-            _context.Passenger = new PassengerEntity(idPassenger);
+            _context.Passenger = PassengerEntity.NouveauClient("Nom#" + idPassenger, "Prénom#" + idPassenger);
         }
 
         [When(@"Le passager monte dans le train")]

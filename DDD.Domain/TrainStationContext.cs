@@ -28,19 +28,19 @@ namespace DDD.Domain
                 entity.ToTable("T_Passenger", "sch_station");
 
                 entity.Property(e => e.Id)
-                    .HasColumnName("PAS_Id")
-                    .ValueGeneratedNever();
+                    .HasColumnName("PAS_Id");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("PAS_Name")
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TrainId).HasColumnName("PAS_TRA_Id").IsRequired();
+                entity.Property(e => e.TrainId).HasColumnName("PAS_TRA_Id");
 
                 entity.HasOne(d => d.Train)
                     .WithMany(p => p.Passengers)
                     .HasForeignKey(d => d.TrainId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Passenger_T_Train");
             });
 
@@ -52,11 +52,10 @@ namespace DDD.Domain
                 entity.ToTable("T_Train", "sch_station");
 
                 entity.Property(e => e.Id)
-                    .HasColumnName("TRA_Id")
-                    .ValueGeneratedNever();
+                    .HasColumnName("TRA_Id");
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("TRA_Name")
+                entity.Property(e => e.Number)
+                    .HasColumnName("TRA_Number")
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });

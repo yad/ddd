@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace DDD.Domain.Passenger
@@ -15,6 +16,12 @@ namespace DDD.Domain.Passenger
         internal async Task<PassengerEntity> GetById(int passengerId)
         {
             return await context.Set<PassengerEntity>().FirstOrDefaultAsync(p => p.Id == passengerId);
+        }
+
+        internal async Task Add(PassengerEntity passenger)
+        {
+            context.Set<PassengerEntity>().Add(passenger);
+            await context.SaveChangesAsync();
         }
     }
 }
